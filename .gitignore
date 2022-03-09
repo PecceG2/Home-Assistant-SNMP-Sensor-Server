@@ -1,0 +1,33 @@
+# General
+faces-config.NavData
+
+# Maven 
+target/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# JIdea
+.idea/
+.idea_modules/
+cmake-build-*/
+out/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+.dev/
+
+# Windows default
+desktop.ini
