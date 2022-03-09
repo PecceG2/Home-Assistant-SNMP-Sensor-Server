@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "slug": "snmpde",
   "description": "SNMP v2c server for monitoring HA sensors over SNMP",
-  "url": "https://github.com/pecceg2/hassio-snmpde",
+  "url": "https://github.com/PecceG2/HASS-SNMP-Sensors-and-Entities-addon",
   "arch": ["armhf", "armv7", "amd64", "i386"],
   "startup": "services",
   "boot": "auto",
