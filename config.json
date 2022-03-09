@@ -1,0 +1,29 @@
+{
+  "name": "SNMPDE - SNMP Server Exposer",
+  "version": "1.1.0",
+  "slug": "snmpde",
+  "description": "SNMP v2c server for monitoring HA sensors over SNMP",
+  "url": "https://github.com/pecceg2/hassio-snmpde",
+  "arch": ["armhf", "armv7", "amd64", "i386"],
+  "startup": "services",
+  "boot": "auto",
+  "homeassistant_api": true,
+  "options": {
+    "community": "public",
+    "location": "",
+    "name": "",
+	"contact": "",
+    "email": ""
+  },
+  "schema": {
+    "community": "str",
+    "location": "str",
+    "name": "str",
+	"contact": "str",
+    "email": "str"
+  },
+  "ports": {
+    "161/udp": 161
+  },
+  "image": "darthsebulba04/{arch}-hassio-snmpd"
+}
