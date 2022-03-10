@@ -1,5 +1,11 @@
 #!/usr/bin/with-contenv bashio
 
+function get_sensor_data() {
+  local sensor_id=${1}
+  local sensor_data
+  return "${__BASHIO_EXIT_OK}"
+}
+
 CONFIG="/etc/snmp/snmpd.conf"
 
 {
@@ -11,8 +17,10 @@ CONFIG="/etc/snmp/snmpd.conf"
 	echo "access MyROGroup ''      any       noauth    exact  all    none   none"
 } > "${CONFIG}"
 
-bashio::log.info "Starting SNMP server..."
+bashio::log.info "Getting sensors from HA API..."
+bashio::log.info "$(bashio::api.supervisor 'GET' '/api/states')"
 
+bashio::log.info "Starting SNMP server..."
 exec /usr/sbin/snmpd \
 	-c "${CONFIG}" \
 	-f \

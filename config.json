@@ -1,25 +1,28 @@
 {
   "name": "SNMP Sensor Server",
-  "version": "1.3.1-b",
+  "version": "1.3.1-c",
   "slug": "snmpd-sensor-server",
   "description": "SNMP v2c server for monitoring sensors and HA host",
   "url": "https://github.com/PecceG2/Home-Assistant-SNMP-Sensor-Server",
   "arch": ["armhf", "armv7", "amd64", "i386"],
   "startup": "services",
   "boot": "auto",
+  "homeassistant_api": true,
   "options": {
     "sysname": "Home Assistant",
     "community": "public",
     "location": "",
     "name": "",
-    "email": ""
+    "email": "",
+    "expose_sensors": true
   },
   "schema": {
     "sysname": "str",
     "community": "str",
     "location": "str",
     "name": "str",
-    "email": "str"
+    "email": "str",
+    "expose_sensors": "bool"
   },
   "ports": {
     "161/udp": 161
