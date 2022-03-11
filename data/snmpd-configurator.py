@@ -2,6 +2,7 @@
 
 import sys, os
 import json
+import subprocess
 from requests import get
 
 
@@ -21,9 +22,20 @@ ha_sensors_request = get(url, headers=headers)
 ha_sensors = json.loads(ha_sensors_request.text)
 
 for sensor in ha_sensors:
-    sensorOID = OIDPrefix + sensor["entity_id"]
-    configFileObject.write("extend " + sensorOID + " " + sensor["entity_id"] + " python3 get-sensor-data.py")
-    print("Added SNMP sensor with OID: "+sensorOID)
+    sensorID = sensor["entity_id"]
+
+    if sensorID == "sun.sun":
+        sensorOID = "1.1.1.1.1.1.1.1.1.1"
+    else:
+        sensorOID = OIDPrefix+sensorID
+    # Generate OID
+    #extOID = subprocess.Popen(["snmpget", "", "-arg2"])
+
+
+
+    # Save
+    configFileObject.write("extend " + sensorOID + " " + sensorID + " python3 get-sensor-data.py")
+    print("Added SNMP sensor "+sensorID+" with OID: "+sensorOID)
 
 
 configFileObject.close()
