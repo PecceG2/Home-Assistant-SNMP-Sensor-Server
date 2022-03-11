@@ -20,7 +20,7 @@ if bashio::var.true "$(bashio::config 'expose_sensors')"; then
 fi
 
 
-bashio::log.info "Starting SNMP Sensor Server..."
+bashio::log.info "Listening SNMP Sensor Server..."
 exec /usr/sbin/snmpd \
 	-c "${CONFIG}" \
 	-f \

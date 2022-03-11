@@ -20,14 +20,15 @@ headers = {
 ha_sensors_request = get(url, headers=headers)
 ha_sensors = json.loads(ha_sensors_request.text)
 
+print("Generated SNMP OIDs:")
 for sensor in ha_sensors:
     sensorID = sensor["entity_id"]
 
     # Generate OID
-    sensorOID = subprocess.check_output('snmptranslate -On NET-SNMP-EXTEND-MIB::nsExtendOutput1Line.\"' + sensorID + '\"', shell=True)
+    sensorOID = subprocess.check_output('snmptranslate -On NET-SNMP-EXTEND-MIB::nsExtendOutput1Line.\\\"' + sensorID + '\\\"', shell=True, stderr=subprocess.STDOUT, text=True)
 
     # Save
-    configFileObject.write("extend " + sensorID + " /bin/echo hello"+ '\n')
+    configFileObject.write("extend " + sensorID + " get-sensor-data-pyconvert.sh " + sensorID + '\n')
     print("Added SNMP sensor "+sensorID+" with OID: "+sensorOID)
 
 
