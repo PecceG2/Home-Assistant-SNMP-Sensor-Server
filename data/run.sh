@@ -1,11 +1,6 @@
 #!/usr/bin/with-contenv bashio
 
-function get_sensor_data() {
-  local sensor_id=${1}
-  local sensor_data
-  return "${__BASHIO_EXIT_OK}"
-}
-
+bashio::log.info "Preparing SNMP Sensor Server, please wait.."
 CONFIG="/etc/snmp/snmpd.conf"
 
 {
@@ -17,10 +12,15 @@ CONFIG="/etc/snmp/snmpd.conf"
 	echo "access MyROGroup ''      any       noauth    exact  all    none   none"
 } > "${CONFIG}"
 
-bashio::log.info "Getting sensors from HA API..."
-bashio::log.info "$(bashio::api.supervisor 'GET' '/api/states')"
 
-bashio::log.info "Starting SNMP server..."
+if bashio::var.true "$(bashio::config 'expose_sensors')"; then
+	bashio::log.info "Generating OID for HA sensors.."
+	OUTPUT=$(python3 snmpd-configurator.py ${CONFIG} "$(bashio::config 'expose_sensors_OID_base')")
+	bashio::log.info "${OUTPUT}"
+fi
+
+
+bashio::log.info "Starting SNMP Sensor Server..."
 exec /usr/sbin/snmpd \
 	-c "${CONFIG}" \
 	-f \

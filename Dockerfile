@@ -4,7 +4,7 @@ FROM $BUILD_FROM
 ENV LANG C.UTF-8
 
 # Copy data for add-on
-COPY data/run.sh /
+COPY data/* /
 RUN chmod a+x /run.sh
 
 # Install requirements for add-on
