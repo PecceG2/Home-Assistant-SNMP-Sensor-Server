@@ -15,6 +15,7 @@ CONFIG="/etc/snmp/snmpd.conf"
 
 if bashio::var.true "$(bashio::config 'expose_sensors')"; then
 	bashio::log.info "Generating OID for HA sensors.."
+	pip3 install requests
 	OUTPUT=$(python3 snmpd-configurator.py ${CONFIG} "$(bashio::config 'expose_sensors_OID_base')")
 	bashio::log.info "${OUTPUT}"
 fi
