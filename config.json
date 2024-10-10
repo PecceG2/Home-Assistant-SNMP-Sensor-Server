@@ -1,6 +1,6 @@
 {
   "name": "SNMP Sensor Server",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "slug": "snmpd-sensor-server",
   "description": "SNMP v2c server for monitoring sensors and HA host",
   "url": "https://github.com/PecceG2/Home-Assistant-SNMP-Sensor-Server",
