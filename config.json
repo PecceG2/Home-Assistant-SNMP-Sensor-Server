@@ -1,6 +1,6 @@
 {
   "name": "SNMP Sensor Server",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "changelog": "Now you can filter the sensors. By default, all sensors are exposed (compatibility with 1.3.x).\nUse sensors_to_expose input as whitelist sensor list (comma separated), you can use wildcards (example: lights.*, lights.bathroom*, etc.) ",
   "slug": "snmpd-sensor-server",
   "description": "SNMP v2c server for monitoring sensors and HA host",

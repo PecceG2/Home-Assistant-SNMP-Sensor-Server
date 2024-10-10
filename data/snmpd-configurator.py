@@ -68,7 +68,7 @@ for sensor in ha_sensors:
     for wildcardelement in sensorlist:
         totalmatches += len(fnmatch.filter([sensorID], wildcardelement))
 
-    if totalmatches = 0:
+    if totalmatches <= 0:
         continue # Sensor not whitelisted
 
     # Generate OID
