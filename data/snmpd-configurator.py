@@ -12,6 +12,14 @@ OIDPrefix = sys.argv[2]
 sensors_to_expose = sys.argv[3]
 SupervisorToken = os.environ["SUPERVISOR_TOKEN"]
 
+# Sensor finder with regex function
+def sensor_finder(list, string):
+    for element in list:
+        regex = re.escape(element).replace("\\*", ".*")
+        if re.fullmatch(regex, string):
+            return True
+    return False
+
 # Create sensor filter list
 sensors_to_expose = sensors_to_expose.replace(" ", "")
 if sensors_to_expose != "all" and sensors_to_expose != "":
@@ -67,10 +75,3 @@ for sensor in ha_sensors:
 
 
 configFileObject.close()
-
-def sensor_finder(list, string):
-    for element in list:
-        regex = re.escape(element).replace("\\*", ".*")
-        if re.fullmatch(regex, string):
-            return True
-    return False
