@@ -5,10 +5,20 @@ import json
 import subprocess
 from requests import get
 import time
+import re
 
 configFile = sys.argv[1]
 OIDPrefix = sys.argv[2]
+sensors_to_expose = sys.argv[3]
 SupervisorToken = os.environ["SUPERVISOR_TOKEN"]
+
+# Create sensor filter list
+sensors_to_expose = sensors_to_expose.replace(" ", "")
+if sensors_to_expose != "all" and sensors_to_expose != "":
+    if ',' in sensors_to_expose:
+        sensorlist = sensors_to_expose.split(',')
+    else:
+        sensorlist = [sensors_to_expose]
 
 configFileObject = open(configFile, 'a')
 
@@ -40,7 +50,13 @@ while True:
 
 print("Generated SNMP OIDs:")
 for sensor in ha_sensors:
+    
     sensorID = sensor["entity_id"]
+
+    # Verify if sensor is in allowed list
+    if sensors_to_expose != "all" and sensors_to_expose != "":
+        if not sensor_finder(sensors_to_expose, sensorID):
+            continue # Sensor is not whitelisted
 
     # Generate OID
     sensorOID = subprocess.check_output('snmptranslate -On NET-SNMP-EXTEND-MIB::nsExtendOutput1Line.\\\"' + sensorID + '\\\"', shell=True, stderr=subprocess.STDOUT, text=True)
@@ -51,3 +67,10 @@ for sensor in ha_sensors:
 
 
 configFileObject.close()
+
+def sensor_finder(list, string):
+    for element in list:
+        regex = re.escape(element).replace("\\*", ".*")
+        if re.fullmatch(regex, string):
+            return True
+    return False
