@@ -5,7 +5,7 @@ import json
 import subprocess
 from requests import get
 import time
-import re
+import fnmatch
 
 configFile = sys.argv[1]
 OIDPrefix = sys.argv[2]
@@ -27,6 +27,8 @@ if sensors_to_expose != "all" and sensors_to_expose != "":
         sensorlist = sensors_to_expose.split(',')
     else:
         sensorlist = [sensors_to_expose]
+else:
+    sensorlist = ["*"]
 
 configFileObject = open(configFile, 'a')
 
@@ -42,9 +44,9 @@ while True:
 
     status_code = ha_sensors_request.status_code
     content_type = ha_sensors_request.headers.get('Content-Type', '')
-    
+
     print(f"Response HTTP status code: {status_code}, Content-Type: {content_type}")
-    
+
     if status_code == 200 and content_type.startswith('application/json'):
         try:
             ha_sensors = ha_sensors_request.json()
@@ -58,13 +60,16 @@ while True:
 
 print("Generated SNMP OIDs:")
 for sensor in ha_sensors:
-    
+
     sensorID = sensor["entity_id"]
 
     # Verify if sensor is in allowed list
-    if sensors_to_expose != "all" and sensors_to_expose != "":
-        if not sensor_finder(sensors_to_expose, sensorID):
-            continue # Sensor is not whitelisted
+    totalmatches = 0
+    for wildcardelement in sensorlist:
+        totalmatches += len(fnmatch.filter([sensorID], wildcardelement))
+
+    if totalmatches = 0:
+        continue # Sensor not whitelisted
 
     # Generate OID
     sensorOID = subprocess.check_output('snmptranslate -On NET-SNMP-EXTEND-MIB::nsExtendOutput1Line.\\\"' + sensorID + '\\\"', shell=True, stderr=subprocess.STDOUT, text=True)
