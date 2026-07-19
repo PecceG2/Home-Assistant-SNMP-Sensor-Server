@@ -9,15 +9,16 @@
 <p align="center">
   <h3 align="center">Home Assistant SNMP Sensor Server</h3>
 
-
-  <img align="center">
-    HA Add-on to expose the different sensors, entities and objects via SNMP automatically.</br>
+  <p>
+    HA Add-on to expose the different sensors, entities and objects via SNMP automatically.<br>
     It provides monitoring of the system, hardware and HA integrations via external monitoring software like LibreNMS or Nagios.
-    <br />
-    <br />
+  </p>
+
+  <p>
     <a href="https://github.com/PecceG2/"><strong>View my projects »</strong></a>
-    <br />
-    <br />
+  </p>
+
+  <p>
     <a href="https://github.com/PecceG2/Home-Assistant-SNMP-Sensor-Server/issues">Report a Bug</a>
     ·
     <a href="https://github.com/PecceG2/Home-Assistant-SNMP-Sensor-Server/blob/master/LICENSE.md">View License</a>
@@ -28,7 +29,7 @@
 
 ![Supports aarch64 Architecture][aarch64-shield] ![Supports amd64 Architecture][amd64-shield] ![Supports armhf Architecture][armhf-shield] ![Supports armv7 Architecture][armv7-shield] ![Supports i386 Architecture][i386-shield]
 
-</center>
+</div>
 
 **Installation**
 ---
