@@ -5,6 +5,7 @@ CONFIG="/etc/snmp/snmpd.conf"
 
 {
 	echo "com2sec readonly default $(bashio::config 'community')"
+	echo "sysname $(bashio::config 'sysname')"
 	echo "syslocation $(bashio::config 'location')"
 	echo "syscontact $(bashio::config 'name') <$(bashio::config 'email')>"
 	echo "group MyROGroup v2c readonly"
