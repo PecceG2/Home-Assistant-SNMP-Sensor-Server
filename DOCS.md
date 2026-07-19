@@ -4,7 +4,7 @@
 
 From the supervisor add-on store, add the following repository:
 
-https://github.com/darthsebulba04/hassio-addons
+https://github.com/PecceG2/Home-Assistant-SNMP-Sensor-Server
 
 Then, in the new list of add-ons, install `SNMP Server`
 
@@ -49,5 +49,5 @@ The SNMP contact email address, eg `rpi@me.com`
 
 In case you've found a bug, please [open an issue on my GitHub][issue].
 
-[issue]: https://github.com/darthsebulba04/hassio-snmpd/issues
-[repository]: https://github.com/darthsebulba04/hassio-snmpd/
+[issue]: https://github.com/PecceG2/Home-Assistant-SNMP-Sensor-Server/issues
+[repository]: https://github.com/PecceG2/Home-Assistant-SNMP-Sensor-Server
