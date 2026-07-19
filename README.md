@@ -1,7 +1,9 @@
 <br />
-<div align="center">
-  <a href="https://github.com/PecceG2/StudioLED">
-    <img src="https://raw.githubusercontent.com/PecceG2/Home-Assistant-SNMP-Sensor-Server/main/icon.png" alt="Logo" width="80" height="80">
+<center>
+  <a href="https://github.com/PecceG2/Home-Assistant-SNMP-Sensor-Server/">
+    <center>
+    <img style="margin: 0 auto;" src="https://raw.githubusercontent.com/PecceG2/Home-Assistant-SNMP-Sensor-Server/main/icon.png" alt="Logo" width="80" height="80">
+    </center>
   </a>
 
 <p align="center">
